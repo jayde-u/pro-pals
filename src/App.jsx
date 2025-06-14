@@ -5,6 +5,7 @@ import './App.css'
 function App() {
   return (
     <>
+      <h1>Pro Pals</h1>
       <SearchBox />
       <CardList />
     </>
