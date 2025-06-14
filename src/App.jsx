@@ -1,8 +1,14 @@
+import SearchBox from './components/SearchBox';
+import CardList from './components/CardList';
 import './App.css'
-import React  from 'react'
 
 function App() {
-  return;
+  return (
+    <>
+      <SearchBox />
+      <CardList />
+    </>
+  );
 }
 
 export default App
