@@ -24,13 +24,12 @@ const Name = styled.h2`
 const Email = styled.h4`
 `;
 
-function Card() {
-    const name = "jayde";
-    const email = "jayde@prototype.com"
+function Card({ id, name, email }) {
+    
     return (
         <StlyedCard>
             <Avatar
-                src={`https://api.dicebear.com/9.x/dylan/svg?seed=${name}`}
+                src={`https://api.dicebear.com/9.x/dylan/svg?seed=${id + name}`}
                 alt="this is random profile image" />
             <Name>{name}</Name>
             <Email>{email}</Email>

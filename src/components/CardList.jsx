@@ -1,9 +1,15 @@
 import Card from './Card';
 
-function CardList() {
+function CardList({ pals }) {
     return (
         <>
-            <Card />
+           { pals.map((pal) => 
+                <Card 
+                    key = {pal.id}
+                    id = {pal.id}
+                    name = {pal.name}
+                    email = {pal.email} />            
+            )}
         </>
     );
 }
