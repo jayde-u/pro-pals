@@ -1,11 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchBox from './components/SearchBox';
 import CardList from './components/CardList';
 import './App.css'
 
 function App() {
   const [searchText, setSearchText] = useState("");
-  
+  const [pals, setPals] = useState([]);
+  useEffect(() => {
+    fetch("https://randomuser.me/api/?results=30&inc=id,name,email&format=json&noinfo")
+      .then((res) => res.json())  
+      .then((data) => {
+          const loadedPals = data.results.map((person) => ({
+            id: person.id.value ,
+            name: `${person.name.first} ${person.name.last}`,
+            email: person.email
+          }));
+          setPals(loadedPals);
+        })
+      .catch((err) => console.log("에러: ", err));
+  }, []);
+
   return (
     <>
       <h1>Pro Pals</h1>
@@ -13,23 +27,12 @@ function App() {
           searchText={searchText} 
           onSearchTextChange={setSearchText} />
       <CardList 
-          pals={PALS}
+          pals={pals}
           searchText={searchText} />
     </>
   );
 }
 
-const PALS = [
-  { id:1, name: "Milo", email: "milo@fakemail.com" },
-  { id:2, name: "Jayde", email: "jayde@example.com" },
-  { id:3, name: "Theo", email: "theo@demo.com" },
-  { id:4, name: "Luna", email: "luna@sample.com" },
-  { id:5, name: "Zara", email: "zara@domain.com" },
-  { id:6, name: "Kai", email: "kai@testmail.com" },
-  { id:7, name: "Nova", email: "nova@hello.com" },
-  { id:8, name: "Ezra", email: "ezra@world.com" },
-  { id:9, name: "Ivy", email: "ivy@webmail.com" },
-  { id:10, name: "Leo", email: "leo@inbox.com" }
-];
+  
 
 export default App
