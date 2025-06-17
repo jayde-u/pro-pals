@@ -7,10 +7,14 @@ const Search = styled.input`
     margin: 5px;
 `;
 
-function SearchBox() {
+function SearchBox({ searchText, onSearchTextChange }) {
     return (
         <>
-            <Search type="text" placeholder="search..."/>
+            <Search 
+                type="text" 
+                placeholder="search..."
+                value={searchText}
+                onChange={(e) => onSearchTextChange(e.target.value)} />
         </>
     );
 }

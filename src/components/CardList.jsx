@@ -1,15 +1,21 @@
 import Card from './Card';
 
-function CardList({ pals }) {
+function CardList({ pals, searchText }) {
+    function isIncludeKeyword(taget, keyword) {
+        return taget.toLowerCase().includes(keyword.toLowerCase());   
+    }
     return (
         <>
-           { pals.map((pal) => 
-                <Card 
-                    key = {pal.id}
-                    id = {pal.id}
-                    name = {pal.name}
-                    email = {pal.email} />            
-            )}
+           {pals
+                .filter((pal) => isIncludeKeyword(pal.name, searchText)) 
+                .map((pal) => (
+                    <Card 
+                        key = {pal.id}
+                        id = {pal.id}
+                        name = {pal.name}
+                        email = {pal.email} />            
+                
+            ))}
         </>
     );
 }

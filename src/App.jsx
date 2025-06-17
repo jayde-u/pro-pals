@@ -1,13 +1,20 @@
+import { useState } from 'react';
 import SearchBox from './components/SearchBox';
 import CardList from './components/CardList';
 import './App.css'
 
 function App() {
+  const [searchText, setSearchText] = useState("");
+  
   return (
     <>
       <h1>Pro Pals</h1>
-      <SearchBox />
-      <CardList pals={PALS} />
+      <SearchBox 
+          searchText={searchText} 
+          onSearchTextChange={setSearchText} />
+      <CardList 
+          pals={PALS}
+          searchText={searchText} />
     </>
   );
 }
