@@ -3,15 +3,15 @@ import styled from "styled-components";
 
 const CardContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     padding: 10px;
     justify-items: center;
     grid-gap: 10px;
 `
 
 function CardList({ pals, searchText }) {
-    function isIncludeKeyword(taget, keyword) {
-        return taget.toLowerCase().includes(keyword.toLowerCase());   
+    function isIncludeKeyword(target, keyword) {
+        return target.toLowerCase().includes(keyword.toLowerCase());   
     }
     return (
         <CardContainer>
