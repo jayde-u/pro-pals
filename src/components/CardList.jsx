@@ -1,11 +1,20 @@
 import Card from './Card';
+import styled from "styled-components";
+
+const CardContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    padding: 10px;
+    justify-items: center;
+    grid-gap: 10px;
+`
 
 function CardList({ pals, searchText }) {
     function isIncludeKeyword(taget, keyword) {
         return taget.toLowerCase().includes(keyword.toLowerCase());   
     }
     return (
-        <>
+        <CardContainer>
            {pals
                 .filter((pal) => isIncludeKeyword(pal.name, searchText)) 
                 .map((pal) => (
@@ -16,7 +25,7 @@ function CardList({ pals, searchText }) {
                         email = {pal.email} />            
                 
             ))}
-        </>
+        </CardContainer>
     );
 }
 
