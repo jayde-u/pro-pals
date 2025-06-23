@@ -1,17 +1,37 @@
 import styled from "styled-components";
 
-const StyledCard  = styled.div`
+const FlipCard = styled.div`
     position: relative;
-    overflow: hidden;
+    backface-visibility: hidden;
 
-    border: 0.5px solid #35353585;
+    &:hover {
+        transform: perspective(500px) rotateY(180deg);
+        transition: 1s;
+    }
+`
+
+const CardStyle = styled.div`
+    width: 280px;
+    height: 170px;
+
+    border: 0.5px solid #17171785;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(160, 160, 160, 0.1);
-
-    width: 260px;
-    height: 160px;
     background-color: #535353;
+    box-shadow: 0 4px 12px rgba(92, 92, 92, 0.1);
+
+    overflow: hidden;
+`
+
+const CardFront  = styled(CardStyle)`
+    position: absolute;
+    z-index: 1;
 `;
+
+const CardBack  = styled(CardStyle)`
+    position: relative;
+    z-index: 0;
+    transform: rotateY(180deg);
+`
 
 const BlurBackground = styled.div`
     position: absolute;
@@ -25,10 +45,9 @@ const BlurBackground = styled.div`
     transform: scale(1.2);
 `;
 
-
 const Avatar = styled.img`
     position: relative;
-    z-index: 1;
+    z-index: 2;
     top: 10%; left: 5%;
 
     width: 30%;
@@ -38,10 +57,13 @@ const Avatar = styled.img`
 
 const Info = styled.div`
     position: relative;
-    z-index: 1;
-    top: 12%; left: 7%;
+    z-index: 2;
+    top: 15%; left: 7%;
     color: white;
-`
+
+    width: 90%;
+    overflow: scroll;
+`;
 
 const Name = styled.div`
     font-size: 1.2em;
@@ -55,16 +77,25 @@ const Email = styled.div`
 function Card({ id, name, email }) {
     const avatarUrl = `https://api.dicebear.com/9.x/dylan/svg?seed=${id}`;
     return (
-        <StyledCard>
-            <BlurBackground image={avatarUrl} />
-            <Avatar
-                src={avatarUrl}
-                alt="this is random profile image" />
-            <Info>
-                <Name>{name}</Name>
-                <Email>{email}</Email>
-            </Info>
-        </StyledCard>
+        <FlipCard>
+            <CardFront>
+                <BlurBackground image={avatarUrl} />
+                <Avatar
+                    src={avatarUrl}
+                    alt="this is random profile image" />
+                <Info>
+                    <Name>{name}</Name>
+                    <Email>{email}</Email>
+                </Info>
+            </CardFront>
+            <CardBack>
+                <BlurBackground image={avatarUrl} />
+                <Info>
+                    <Name>{name}</Name>
+                    <Email>{email}</Email>
+                </Info>
+            </CardBack>
+        </FlipCard>
     );
 }
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const CardContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     padding: 10px;
     justify-items: center;
     grid-gap: 10px;
