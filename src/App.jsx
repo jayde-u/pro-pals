@@ -8,21 +8,26 @@ import './App.css'
 const Title = styled.h1`
   text-align: center;
   width: 100vw;
-  font-family: "Plaster", sans-serif;
-  font-weight: 400;
+  font-family: "Tiny5", system-ui;
   font-size: 4em;
+  color: white;
 `
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [pals, setPals] = useState([]);
   useEffect(() => {
-    fetch("https://randomuser.me/api/?results=10&inc=id,name,email&format=json&noinfo")
+    fetch("https://randomuser.me/api/?results=10&inc=id,nat,phone,dob,name,email&format=json&noinfo")
       .then((res) => res.json())  
       .then((data) => {
           const loadedPals = data.results.map((person) => ({
             id: person.id.value ,
             name: `${person.name.first} ${person.name.last}`,
+            nat: person.nat,
+            dob: new Date(person.dob.date).toLocaleDateString('en-US', {
+              year: 'numeric', month: 'short', day: 'numeric'
+            }),
+            phone: person.phone,
             email: person.email
           }));
           setPals(loadedPals);

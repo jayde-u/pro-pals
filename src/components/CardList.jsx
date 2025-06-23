@@ -17,13 +17,8 @@ function CardList({ pals, searchText }) {
         <CardContainer>
            {pals
                 .filter((pal) => isIncludeKeyword(pal.name, searchText)) 
-                .map((pal) => (
-                    <Card 
-                        key = {pal.id}
-                        id = {pal.id}
-                        name = {pal.name}
-                        email = {pal.email} />            
-                
+                .map((pal) => ( 
+                    <Card key={pal.id} pal={pal} />            
             ))}
         </CardContainer>
     );

@@ -59,10 +59,10 @@ const Info = styled.div`
     position: relative;
     z-index: 2;
     top: 15%; left: 7%;
-    color: white;
 
-    width: 90%;
+    width: 85%;
     overflow: scroll;
+    color: white;
 `;
 
 const Name = styled.div`
@@ -70,12 +70,12 @@ const Name = styled.div`
     font-weight: bold;
 `;
 
-const Email = styled.div`
+const InfoText = styled.div`
     font-size: 0.9em;
 `;
 
-function Card({ id, name, email }) {
-    const avatarUrl = `https://api.dicebear.com/9.x/dylan/svg?seed=${id}`;
+function Card({ pal }) {
+    const avatarUrl = `https://api.dicebear.com/9.x/dylan/svg?seed=${pal.id}`;
     return (
         <FlipCard>
             <CardFront>
@@ -84,15 +84,19 @@ function Card({ id, name, email }) {
                     src={avatarUrl}
                     alt="this is random profile image" />
                 <Info>
-                    <Name>{name}</Name>
-                    <Email>{email}</Email>
+                    <Name>{pal.name}</Name>
+                    <InfoText>{pal.email}</InfoText>
                 </Info>
             </CardFront>
             <CardBack>
                 <BlurBackground image={avatarUrl} />
                 <Info>
-                    <Name>{name}</Name>
-                    <Email>{email}</Email>
+                    <Name>{pal.name}</Name>
+                    <hr style={{ border: 'none', borderTop: '0.3px solid' }} />    
+                    <InfoText>{pal.nat}</InfoText>
+                    <InfoText>{pal.dob}</InfoText>
+                    <InfoText>{pal.phone}</InfoText>
+                    <InfoText>{pal.email}</InfoText>
                 </Info>
             </CardBack>
         </FlipCard>
