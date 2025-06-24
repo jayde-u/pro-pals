@@ -8,8 +8,9 @@ import './App.css'
 const Title = styled.h1`
   text-align: center;
   width: 100vw;
-  font-family: "Tiny5", system-ui;
-  font-size: 4em;
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-size: 5em;
   color: white;
 `
 
