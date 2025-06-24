@@ -64,19 +64,30 @@ Error generating stack: `+e.message+`
     margin-top: 10px;
     margin-bottom: 10px;
 `,Lv=nl.input`
-    border: 2px solid #ffffff;
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 0.3px solid black;
+    border-radius: 10px;
+
     width: 90vw;
     max-width: 500px;
-    margin: 5px;
-    font-size: 1.2em;
+    height: 30px;
+    padding-left: 10px;
+
+    font-size: 1em;
     font-weight: lighter;
-`;function Kv({searchText:c,onSearchTextChange:s}){return pt.jsx(Vv,{children:pt.jsx(Lv,{type:"text",placeholder:"search...",value:c,onChange:o=>s(o.target.value)})})}const wv=nl.div`
+    color: white;
+
+    &:focus-visible {
+        outline: none;
+        border: 0.3px solid;
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+`;function Kv({searchText:c,onSearchTextChange:s}){return pt.jsx(Vv,{children:pt.jsx(Lv,{type:"text",placeholder:"Search...",value:c,onChange:o=>s(o.target.value)})})}const wv=nl.div`
     position: relative;
     backface-visibility: hidden;
 
-    transition: 1s ease;
-    &.enter {
+    transition: all 1s ease;
+    &.flip {
         transform: perspective(500px) rotateY(180deg);
     }
 `,ih=nl.div`
@@ -127,7 +138,7 @@ Error generating stack: `+e.message+`
     font-weight: bold;
 `,wu=nl.div`
     font-size: 0.9em;
-`;function kv({pal:c}){const[s,o]=Ne.useState(!1),r=`https://api.dicebear.com/9.x/dylan/svg?seed=${c.id}`;return pt.jsxs(wv,{onMouseOver:()=>o(!0),onMouseOut:()=>o(!1),className:s?"enter":"leave",children:[pt.jsxs(Jv,{children:[pt.jsx(x0,{image:r}),pt.jsx(Wv,{src:r,alt:"this is random profile image"}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx(wu,{children:c.email})]})]}),pt.jsxs($v,{children:[pt.jsx(x0,{image:r}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx("hr",{style:{border:"none",borderTop:"0.3px solid"}}),pt.jsx(wu,{children:c.nat}),pt.jsx(wu,{children:c.dob}),pt.jsx(wu,{children:c.phone}),pt.jsx(wu,{children:c.email})]})]})]})}const Fv=nl.div`
+`;function kv({pal:c}){const[s,o]=Ne.useState(!1),r=`https://api.dicebear.com/9.x/dylan/svg?seed=${c.id}`;return pt.jsxs(wv,{onMouseEnter:()=>o(!0),onMouseLeave:()=>o(!1),className:s?"flip":"",children:[pt.jsxs(Jv,{children:[pt.jsx(x0,{image:r}),pt.jsx(Wv,{src:r,alt:"this is random profile image"}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx(wu,{children:c.email})]})]}),pt.jsxs($v,{children:[pt.jsx(x0,{image:r}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx("hr",{style:{border:"none",borderTop:"0.3px solid"}}),pt.jsx(wu,{children:c.nat}),pt.jsx(wu,{children:c.dob}),pt.jsx(wu,{children:c.phone}),pt.jsx(wu,{children:c.email})]})]})]})}const Fv=nl.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     padding: 10px;
@@ -136,7 +147,8 @@ Error generating stack: `+e.message+`
 `;function Iv({pals:c,searchText:s}){function o(r,m){return r.toLowerCase().includes(m.toLowerCase())}return pt.jsx(Fv,{children:c.filter(r=>o(r.name,s)).map(r=>pt.jsx(kv,{pal:r},r.id))})}const Pv=nl.h1`
   text-align: center;
   width: 100vw;
-  font-family: "Tiny5", system-ui;
-  font-size: 4em;
+  font-family: "Special Gothic Expanded One", sans-serif;
+  font-weight: 400;
+  font-size: 5em;
   color: white;
 `;function tm(){const[c,s]=Ne.useState(""),[o,r]=Ne.useState([]);return Ne.useEffect(()=>{fetch("https://randomuser.me/api/1.4/?results=30&inc=login,nat,phone,dob,name,email&format=json&noinfo").then(m=>m.json()).then(m=>{const A=m.results.map(R=>({id:R.login.username,name:`${R.name.first} ${R.name.last}`,nat:R.nat,dob:new Date(R.dob.date).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"}),phone:R.phone,email:R.email}));r(A)}).catch(m=>console.log("fetch error: ",m))},[]),pt.jsxs(pt.Fragment,{children:[pt.jsx(Zv,{}),pt.jsx(Pv,{children:"PRO PALS"}),pt.jsx(Kv,{searchText:c,onSearchTextChange:s}),pt.jsx(Iv,{pals:o,searchText:c})]})}X1.createRoot(document.getElementById("root")).render(pt.jsx(Ne.StrictMode,{children:pt.jsx(tm,{})}));
