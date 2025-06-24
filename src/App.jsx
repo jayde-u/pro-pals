@@ -17,11 +17,11 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [pals, setPals] = useState([]);
   useEffect(() => {
-    fetch("https://randomuser.me/api/?results=10&inc=id,nat,phone,dob,name,email&format=json&noinfo")
+    fetch("https://randomuser.me/api/1.4/?results=30&inc=login,nat,phone,dob,name,email&format=json&noinfo")
       .then((res) => res.json())  
       .then((data) => {
           const loadedPals = data.results.map((person) => ({
-            id: person.id.value ,
+            id: person.login.username,
             name: `${person.name.first} ${person.name.last}`,
             nat: person.nat,
             dob: new Date(person.dob.date).toLocaleDateString('en-US', {
@@ -32,7 +32,7 @@ function App() {
           }));
           setPals(loadedPals);
         })
-      .catch((err) => console.log("에러: ", err));
+      .catch((err) => console.log("fetch error: ", err));
   }, []);
 
   return (
