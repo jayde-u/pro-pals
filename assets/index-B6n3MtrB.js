@@ -84,15 +84,16 @@ Error generating stack: `+e.message+`
     }
 `;function Kv({searchText:c,onSearchTextChange:s}){return pt.jsx(Vv,{children:pt.jsx(Lv,{type:"text",placeholder:"Search...",value:c,onChange:o=>s(o.target.value)})})}const wv=nl.div`
     position: relative;
-    backface-visibility: hidden;
 
     transition: all 1s ease;
-    &.flip {
+    transform-style: preserve-3d;
+    &:hover {
         transform: perspective(500px) rotateY(180deg);
     }
 `,ih=nl.div`
     width: 280px;
     height: 170px;
+    backface-visibility: hidden;
 
     border: 0.5px solid #17171785;
     border-radius: 10px;
@@ -109,7 +110,7 @@ Error generating stack: `+e.message+`
     transform: rotateY(180deg);
 `,x0=nl.div`
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 
     background-image: url(${c=>c.image});
     background-size: contain;
@@ -117,17 +118,19 @@ Error generating stack: `+e.message+`
     filter: blur(8px) brightness(70%);
     top: 0; left: 0; right: 0; bottom: 0;
     transform: scale(1.2);
+    height: 170px;
 `,Wv=nl.img`
     position: relative;
-    z-index: 2;
-    top: 10%; left: 5%;
+    z-index: 3;
+    top: 10%; 
+    left: 5%;
 
     width: 30%;
     border: 1px solid rgba(255, 255, 255, 0.48);
     border-radius: 50%;
 `,H0=nl.div`
     position: relative;
-    z-index: 2;
+    z-index: 3;
     top: 15%; left: 7%;
 
     width: 85%;
@@ -147,6 +150,7 @@ Error generating stack: `+e.message+`
 `;function Iv({pals:c,searchText:s}){function o(r,m){return r.toLowerCase().includes(m.toLowerCase())}return pt.jsx(Fv,{children:c.filter(r=>o(r.name,s)).map(r=>pt.jsx(kv,{pal:r},r.id))})}const Pv=nl.h1`
   text-align: center;
   width: 100vw;
+  
   font-family: "Special Gothic Expanded One", sans-serif;
   font-weight: 400;
   font-size: 5em;
