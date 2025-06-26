@@ -7,11 +7,15 @@ import './App.css'
 
 const Title = styled.h1`
   text-align: center;
-  width: 100vw;
   font-family: "Special Gothic Expanded One", sans-serif;
-  font-weight: 400;
-  font-size: 5em;
+  font-weight: 400;  
   color: white;
+
+  margin-bottom: 2rem;
+  font-size: 5rem;
+  @media (max-width: 600px) {
+    font-size: 15vw;
+  }
 `
 
 function App() {
