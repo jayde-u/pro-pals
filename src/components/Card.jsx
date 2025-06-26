@@ -1,18 +1,20 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const FlipCard = styled.div`
     position: relative;
-    backface-visibility: hidden;
 
+    transition: all 1s ease;
+    transform-style: preserve-3d;
     &:hover {
         transform: perspective(500px) rotateY(180deg);
-        transition: 1s;
     }
 `
 
 const CardStyle = styled.div`
     width: 280px;
     height: 170px;
+    backface-visibility: hidden;
 
     border: 0.5px solid #17171785;
     border-radius: 10px;
@@ -35,7 +37,7 @@ const CardBack  = styled(CardStyle)`
 
 const BlurBackground = styled.div`
     position: absolute;
-    z-index: 1;
+    z-index: 2;
 
     background-image: url(${props => props.image});
     background-size: contain;
@@ -47,23 +49,33 @@ const BlurBackground = styled.div`
 
 const Avatar = styled.img`
     position: relative;
-    z-index: 2;
-    top: 10%; left: 5%;
+    z-index: 3;
+    top: 0.7em; 
+    left: 5%;
 
     width: 30%;
-    border: 1px solid rgba(255, 255, 255, 0.48);
+    border: 3px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
 `;
 
 const Info = styled.div`
     position: relative;
-    z-index: 2;
-    top: 15%; left: 7%;
+    z-index: 3;
 
     width: 85%;
     overflow: scroll;
     color: white;
 `;
+
+const InfoFront = styled(Info)`
+    top: 10%;
+    left: 7%;
+`
+
+const InfoBack = styled(Info)`
+    top: 16%;
+    left: 8%;
+`
 
 const Name = styled.div`
     font-size: 1.2em;
@@ -75,29 +87,34 @@ const InfoText = styled.div`
 `;
 
 function Card({ pal }) {
+    const [isHovered, setIsHovered] = useState(false);
     const avatarUrl = `https://api.dicebear.com/9.x/dylan/svg?seed=${pal.id}`;
+    
     return (
-        <FlipCard>
+        <FlipCard 
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            className={isHovered ? "flip" : ""}>
             <CardFront>
                 <BlurBackground image={avatarUrl} />
                 <Avatar
                     src={avatarUrl}
                     alt="this is random profile image" />
-                <Info>
+                <InfoFront>
                     <Name>{pal.name}</Name>
                     <InfoText>{pal.email}</InfoText>
-                </Info>
+                </InfoFront>
             </CardFront>
             <CardBack>
                 <BlurBackground image={avatarUrl} />
-                <Info>
+                <InfoBack>
                     <Name>{pal.name}</Name>
-                    <hr style={{ border: 'none', borderTop: '0.3px solid' }} />    
+                    <hr style={{ border: 'none', borderTop: '0.3px solid white' }} />    
                     <InfoText>{pal.nat}</InfoText>
                     <InfoText>{pal.dob}</InfoText>
                     <InfoText>{pal.phone}</InfoText>
                     <InfoText>{pal.email}</InfoText>
-                </Info>
+                </InfoBack>
             </CardBack>
         </FlipCard>
     );
