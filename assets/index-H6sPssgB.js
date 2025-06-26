@@ -118,20 +118,19 @@ Error generating stack: `+e.message+`
     filter: blur(8px) brightness(70%);
     top: 0; left: 0; right: 0; bottom: 0;
     transform: scale(1.2);
-    height: 170px;
 `,Wv=nl.img`
     position: relative;
     z-index: 3;
-    top: 10%; 
+    top: 0.8em; 
     left: 5%;
 
     width: 30%;
-    border: 1px solid rgba(255, 255, 255, 0.48);
+    border: 3px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
 `,H0=nl.div`
     position: relative;
     z-index: 3;
-    top: 15%; left: 7%;
+    top: 13%; left: 8%;
 
     width: 85%;
     overflow: scroll;
@@ -141,7 +140,7 @@ Error generating stack: `+e.message+`
     font-weight: bold;
 `,wu=nl.div`
     font-size: 0.9em;
-`;function kv({pal:c}){const[s,o]=Ne.useState(!1),r=`https://api.dicebear.com/9.x/dylan/svg?seed=${c.id}`;return pt.jsxs(wv,{onMouseEnter:()=>o(!0),onMouseLeave:()=>o(!1),className:s?"flip":"",children:[pt.jsxs(Jv,{children:[pt.jsx(x0,{image:r}),pt.jsx(Wv,{src:r,alt:"this is random profile image"}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx(wu,{children:c.email})]})]}),pt.jsxs($v,{children:[pt.jsx(x0,{image:r}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx("hr",{style:{border:"none",borderTop:"0.3px solid"}}),pt.jsx(wu,{children:c.nat}),pt.jsx(wu,{children:c.dob}),pt.jsx(wu,{children:c.phone}),pt.jsx(wu,{children:c.email})]})]})]})}const Fv=nl.div`
+`;function kv({pal:c}){const[s,o]=Ne.useState(!1),r=`https://api.dicebear.com/9.x/dylan/svg?seed=${c.id}`;return pt.jsxs(wv,{onMouseEnter:()=>o(!0),onMouseLeave:()=>o(!1),className:s?"flip":"",children:[pt.jsxs(Jv,{children:[pt.jsx(x0,{image:r}),pt.jsx(Wv,{src:r,alt:"this is random profile image"}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx(wu,{children:c.email})]})]}),pt.jsxs($v,{children:[pt.jsx(x0,{image:r}),pt.jsxs(H0,{children:[pt.jsx(q0,{children:c.name}),pt.jsx("hr",{style:{border:"none",borderTop:"0.3px solid white"}}),pt.jsx(wu,{children:c.nat}),pt.jsx(wu,{children:c.dob}),pt.jsx(wu,{children:c.phone}),pt.jsx(wu,{children:c.email})]})]})]})}const Fv=nl.div`
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     padding: 10px;
