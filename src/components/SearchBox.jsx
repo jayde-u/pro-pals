@@ -8,13 +8,14 @@ const SearchContainer = styled.div`
 `
 const Search = styled.input`
     background-color: rgba(255, 255, 255, 0.2);
-    border: 0.3px solid black;
+    border: 0.3px solid rgba(255, 255, 255, 0.2);
     border-radius: 10px;
 
     width: 90vw;
-    max-width: 500px;
-    height: 30px;
+    max-width: 600px;
+    height: 35px;
     padding-left: 10px;
+    margin-bottom: 20px;
 
     font-size: 1em;
     font-weight: lighter;

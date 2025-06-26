@@ -5,6 +5,22 @@ import SearchBox from './components/SearchBox';
 import CardList from './components/CardList';
 import './App.css'
 
+const Header = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(24, 24, 24, 1) 50%,
+    rgba(24, 24, 24, 0.8) 70%,
+    rgba(24, 24, 24, 0.4) 90%,
+    rgba(24, 24, 24, 0) 100%
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10x);
+`
+
 const Title = styled.h1`
   text-align: center;
   font-family: "Special Gothic Expanded One", sans-serif;
@@ -43,17 +59,19 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Title>PRO PALS</Title>
-      <SearchBox 
-          searchText={searchText} 
-          onSearchTextChange={setSearchText} />
-      <CardList 
-          pals={pals}
-          searchText={searchText} />
+      <Header>
+        <Title>PRO PALS</Title>
+        <SearchBox 
+            searchText={searchText} 
+            onSearchTextChange={setSearchText} />
+      </Header>
+      <body>
+        <CardList 
+            pals={pals}
+            searchText={searchText} />
+      </body>
     </>
   );
 }
-
-  
 
 export default App
